@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.city-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.city-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #4a5568;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.current-weather {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.current-weather::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.temperature {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.weather-icon {
+    font-size: 3rem;
+    opacity: 0.9;
+}
+
+.weather-description {
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.weekly-forecast {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.day-forecast {
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.day-forecast:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.day-name {
+    font-weight: bold;
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.day-date {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-bottom: 8px;
+}
+
+.day-icon {
+    font-size: 1.8rem;
+    margin: 8px 0;
+    color: #4299e1;
+    flex-shrink: 0;
+}
+
+.day-temps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.temp-high {
+    font-weight: bold;
+    color: #e53e3e;
+}
+
+.temp-low {
+    color: #718096;
+}
+
+.day-description {
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.refresh-btn {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.refresh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+}
+
+.refresh-btn:active {
+    transform: translateY(0);
+}
+
+.refresh-btn i {
+    margin-right: 8px;
+}
+
+.last-updated {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.loading {
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    font-style: italic;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ed8936, #dd6b20);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification i {
+    margin-right: 10px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.weather-change {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .city-section {
+        padding: 15px;
+    }
+    
+    .weather-main {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .temperature {
+        font-size: 2.5rem;
+    }
+    
+    .weekly-forecast {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .day-forecast {
+        padding: 10px;
+        min-height: 100px;
+    }
+    
+    .day-icon {
+        font-size: 1.5rem;
+        margin: 5px 0;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .notification {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+    
+    .city-section {
+        padding: 10px;
+    }
+    
+    .weekly-forecast {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+    
+    .day-forecast {
+        padding: 6px;
+        font-size: 0.8rem;
+        min-height: 85px;
+        border-radius: 8px;
+    }
+    
+    .day-icon {
+        font-size: 1.2rem;
+        margin: 3px 0;
+    }
+    
+    .day-name {
+        font-size: 0.75rem;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+    
+    .day-date {
+        font-size: 0.65rem;
+        margin-bottom: 3px;
+    }
+    
+    .day-temps {
+        margin-bottom: 2px;
+        font-size: 0.8rem;
+    }
+    
+    .day-description {
+        font-size: 0.65rem;
+        line-height: 1.2;
+    }
+}

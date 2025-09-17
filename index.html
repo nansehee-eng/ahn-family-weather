@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 대시보드 - 서울 & 제주 서귀포</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-cloud-sun"></i> 날씨 대시보드</h1>
+            <p>서울 중구 을지로 & 서귀포 대정읍 NLCS 9일 날씨 예보</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="city-section" id="seoul-section">
+                <h2><i class="fas fa-building"></i> 서울 중구 을지로</h2>
+                <div class="current-weather" id="seoul-current">
+                    <div class="loading">날씨 정보를 불러오는 중...</div>
+                </div>
+                <div class="weekly-forecast" id="seoul-weekly">
+                    <!-- 주간 예보가 여기에 표시됩니다 -->
+                </div>
+            </div>
+
+            <div class="city-section" id="seogwipo-section">
+                <h2><i class="fas fa-graduation-cap"></i> 서귀포 대정읍 NLCS</h2>
+                <div class="current-weather" id="seogwipo-current">
+                    <div class="loading">날씨 정보를 불러오는 중...</div>
+                </div>
+                <div class="weekly-forecast" id="seogwipo-weekly">
+                    <!-- 주간 예보가 여기에 표시됩니다 -->
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="refresh-btn" class="refresh-btn">
+                <i class="fas fa-sync-alt"></i> 새로고침
+            </button>
+            <div class="last-updated" id="last-updated">
+                마지막 업데이트: -
+            </div>
+        </div>
+
+        <div class="notification" id="notification" style="display: none;">
+            <i class="fas fa-bell"></i>
+            <span id="notification-text"></span>
+        </div>
+    </div>
+
+    <audio id="notification-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOTKXh8LlmHgU9k9n01YIuBSF0xe/eizELGGq+8+OWT" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
